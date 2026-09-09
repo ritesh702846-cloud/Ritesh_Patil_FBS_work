@@ -1,4 +1,15 @@
-void main()
+void marks(float *t,float *p)
+{
+
+//		*t= s1+s2+s3+s4+s5;
+  //  *p = (*t / 500) * 100;
+     
+     printf("total = %f\n",*t);
+     printf("percentage = %f",*p);
+}
+
+
+int main()
 {
 	float s1,s2,s3,s4,s5;
 	float total,percentage;
@@ -12,10 +23,9 @@ void main()
 	scanf("%f",&s4);
 		printf("enter s5 ");
 	scanf("%f",&s5);
+	
 	total=s1+s2+s3+s4+s5;
     percentage = (total / 500) * 100;
-     
-     printf("total%f\n",total);
-     printf("percentage%f",percentage);
 	
+	marks(&total,&percentage);
 }
