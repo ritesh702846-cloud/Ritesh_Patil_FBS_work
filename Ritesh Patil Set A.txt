@@ -1,0 +1,175 @@
+Ritesh Patil 
+set A
+FRN-19J0826/001
+
+Q1.
+void main()
+{
+	int i;
+	int j;
+	int start,end,count,sum =0;
+	
+	printf("Enter a start no =  ");
+	scanf("%d",&start);
+	
+	printf("Enter a end no = ");
+	scanf("%d",&end);
+	
+	for(i = start;i<=end;i++)
+	{
+		count = 0;
+		
+		for(j = 1;j<=i;j++)
+		{
+			if(i % j == 0)
+			{
+				count++;
+			}
+		 } 
+		 if(count == 2)
+		 {
+		 	printf("%d ",i);
+		 	sum = sum+i;
+		 }
+	}
+	
+	printf("\n sum of prime no = %d",sum);
+	
+	
+}
+
+
+
+Q2.
+void main()
+{
+	char arr[20];
+	char ch;
+	
+	printf("Enter a string = ");
+	scanf("%s",arr);
+	
+	printf("Enter a ch to replace = ");
+	scanf(" %c",&ch);
+	
+	int i;
+	for(i=0;arr[i] !='\0';i++)
+	{
+		if(arr[i] == ch)
+		{
+			arr[i]='#';
+		}
+	}
+	printf("new string is = %s",arr);
+}
+
+
+
+Q3.
+#include <stdio.h>
+#include <string.h>
+
+typedef struct Task
+{
+    int id;
+    char description[100];
+    char status[20];
+} Task;
+
+void addTask(Task arr[], int *count);
+void updateTask(Task arr[], int count);
+void displayTasks(Task arr[], int count);
+
+int main()
+{
+    Task arr[100];
+    int count = 0;
+    int choice;
+
+    while(1)
+    {
+        printf("\n\n--- TO-DO LIST ---");
+        printf("\n1. Add Task");
+        printf("\n2. Update Task");
+        printf("\n3. Display Tasks");
+        printf("\n4. Exit");
+
+        printf("\nEnter choice = ");
+        scanf("%d", &choice);
+        getchar();
+
+        if(choice == 1)
+        {
+            addTask(arr, &count);
+        }
+        else if(choice == 2)
+        {
+            updateTask(arr, count);
+        }
+        else if(choice == 3)
+        {
+            displayTasks(arr, count);
+        }
+        else if(choice == 4)
+        {
+            break;
+        }
+        else
+        {
+            printf("Invalid choice");
+        }
+    }
+
+    return 0;
+}
+
+void addTask(Task arr[], int *count)
+{
+    printf("Enter task ID = ");
+    scanf("%d", &arr[*count].id);
+    getchar();
+
+    printf("Enter description = ");
+    fgets(arr[*count].description, 100, stdin);
+
+    strcpy(arr[*count].status, "Pending");
+
+    (*count)++;
+
+    printf("Task added");
+}
+
+void updateTask(Task arr[], int count)
+{
+    int id, i;
+
+    printf("Enter task ID to update = ");
+    scanf("%d", &id);
+    getchar();
+
+    for(i = 0; i < count; i++)
+    {
+        if(arr[i].id == id)
+        {
+            printf("Enter new status = ");
+            fgets(arr[i].status, 20, stdin);
+
+            printf("Task updated");
+            return;
+        }
+    }
+
+    printf("Task not found");
+}
+
+void displayTasks(Task arr[], int count)
+{
+    int i;
+
+    for(i = 0; i < count; i++)
+    {
+        printf("\nTask ID = %d", arr[i].id);
+        printf("\nDescription = %s", arr[i].description);
+        printf("Status = %s", arr[i].status);
+    }
+}
